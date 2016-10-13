@@ -1,0 +1,21 @@
+{
+  "name": "SearchO365",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Pan",
+    "Daniel(lianpan) <lianpan@ebay.com>"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.1.1"
+  }
+}

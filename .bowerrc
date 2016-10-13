@@ -1,0 +1,8 @@
+{
+  "directory": "public/bower_components",
+  "json": "bower.json",
+  "searchpath": "",
+  "shorthand_resolver": "",
+  "proxy":"http://itcorppx.corp.ebay.com:80",
+  "https-proxy":"http://itcorppx.corp.ebay.com:80"
+}

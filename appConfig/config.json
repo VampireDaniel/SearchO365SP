@@ -1,0 +1,5 @@
+{
+  "getTokenApiHost": "localhost",
+  "getTokenApiPort":"3002",
+  "getTokenApiPath": "/getTokenApi"
+}

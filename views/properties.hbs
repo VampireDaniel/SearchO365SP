@@ -1,0 +1,40 @@
+
+
+<script  language="javascript"  type="text/javascript">
+
+</script>
+
+
+<div>
+    ElapsedTime: {{elapsedTime}} ms
+</div>
+
+<br/>
+
+<div>
+    {{#if result.Rows}}
+        {{#each result.Rows}}
+            <table border="1" style="border-collapse: collapse;">
+                {{#each Cells}}
+                    <tr>
+                        <td>{{Key}}</td>
+                        <td>
+                            {{Value}}
+                        </td>
+                    </tr>
+                {{/each}}
+            </table>
+            <br/>
+            <br/>
+            <br/>
+        {{/each}}
+    {{/if}}
+
+</div>
+
+
+<br/>
+
+<div>
+    Result: {{strResult}}
+</div>

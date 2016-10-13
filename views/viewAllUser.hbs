@@ -1,0 +1,42 @@
+<script type="text/javascript">
+    function nextPage() {
+        document.forms[0].submit();
+    }
+</script>
+
+<div class="ms-Grid-row">
+    <!-- App navigation bar markup. -->
+    <div class="ms-NavBar">
+        <ul class="ms-NavBar-items">
+            <li class="navbar-header">Office 365 Connect sample</li>
+            <li id="disconnect_link" class="ms-NavBar-item ms-NavBar-item--right"
+                onclick="window.location.href='disconnect'"><i class="ms-Icon ms-Icon--x"></i> Disconnect
+            </li>
+        </ul>
+    </div>
+    <!-- App main content markup. -->
+    <form action="nextpage" method="post">
+        <div class="ms-Grid-col ms-u-mdPush1 ms-u-md9 ms-u-lgPush1 ms-u-lg6">
+            <div>
+                <div>
+                    {{#each allUser}}
+                        <div class="ms-TextField">
+                            DisplayName:{{displayName}},&nbsp;&nbsp;Email:{{mail}}
+                        </div>
+                    {{/each}}
+                </div>
+
+                <div class="ms-TextField">
+                    Next Page Token : <input name="next_page_token" value="{{nextPageToken}}"/>
+                </div>
+
+                {{#if nextPageToken}}
+                    <button id="send_mail_button" class="ms-Button" onclick="nextPage();">
+                        <span class="ms-Button-label">Next Page</span>
+                    </button>
+                {{/if}}
+
+            </div>
+        </div>
+    </form>
+</div>

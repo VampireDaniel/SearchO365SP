@@ -1,0 +1,66 @@
+<script  language="javascript"  type="text/javascript">
+    function search() {
+        var text = '/search?querytext=' + $("#ipt_searchtext").val();
+        alert(text);
+
+        window.location.href = ''+text+'';
+
+    }
+
+    function getProperties(value) {
+        var href = '/properties?querytext=%27WorkId%3a%22' + value + '%22%27&refiners=%27ManagedProperties(filter%3d600%2f0%2f*)%27';
+
+        alert(href);
+
+        window.open(href);
+
+    }
+
+</script>
+
+
+<div>
+    O365 API Search
+</div>
+
+
+<div>
+
+    <input id="ipt_searchtext">
+
+    <input type="button" id="btn_search" class="" onclick="search();" value="Search">
+
+</div>
+
+<div>
+    ElapsedTime: {{elapsedTime}} ms
+</div>
+
+<br/>
+
+<div>
+    {{#if result.Rows}}
+        {{#each result.Rows}}
+            <table border="1" style="border-collapse: collapse;">
+                {{#each Cells}}
+                    <tr>
+                        <td>{{Key}}</td>
+                        <td>
+                            {{Value}}
+                        </td>
+                    </tr>
+                {{/each}}
+            </table>
+            <br/>
+            <br/>
+            <br/>
+        {{/each}}
+    {{/if}}
+</div>
+
+
+<br/>
+
+<!--<div>-->
+    <!--Result: {{strResult}}-->
+<!--</div>-->
