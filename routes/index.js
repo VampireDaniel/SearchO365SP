@@ -11,6 +11,7 @@ var url = require('url');
 var hbs = require('hbs');
 var logger = require('../common/logger/logger').logger;
 var cipher = require('../common/authorizer/crypter.js');
+var moment = require('moment');
 
 
 /* GET home page. */
@@ -28,8 +29,6 @@ router.get('/', function (req, res) {
 });
 
 
-
-
 router.get('/search', function (req, res) {
     if (req.query.querytext !== undefined) {
         var timeSpan = Date.parse(new Date()).toString();
@@ -38,7 +37,7 @@ router.get('/search', function (req, res) {
             if (err === null) {
                 requestUtil.getTokenFromApi(timeSpan, cipher, function (err, token) {
                     if (err === null) {
-                        token =JSON.parse(token.replace(/&quot;/g,'"'));
+                        token = JSON.parse(token.replace(/&quot;/g, '"'));
                         var accessToken = token.accessToken;
 
                         var searchText = '\'' + req.query.querytext + '\'';
@@ -50,7 +49,7 @@ router.get('/search', function (req, res) {
                                 res.render(
                                     'search',
                                     {
-                                        strResult: JSON.stringify(table),
+                                        //strResult: JSON.stringify(table),
                                         result: table,
                                         elapsedTime: elapsedTime
                                     }
@@ -84,7 +83,7 @@ router.get('/search2', function (req, res) {
             if (err === null) {
                 requestUtil.getTokenFromApi(timeSpan, cipher, function (err, token) {
                     if (err === null) {
-                        token =JSON.parse(token.replace(/&quot;/g,'"'));
+                        token = JSON.parse(token.replace(/&quot;/g, '"'));
                         var accessToken = token.accessToken;
 
                         var searchText = '\'' + req.query.querytext + '\'';
@@ -96,7 +95,8 @@ router.get('/search2', function (req, res) {
                                 res.render(
                                     'search2',
                                     {
-                                        strResult: JSON.stringify(table),
+                                        //strResult: JSON.stringify(table),
+                                        accessToken: accessToken,
                                         result: table,
                                         elapsedTime: elapsedTime
                                     }
@@ -171,7 +171,6 @@ function renderSendMail(req, res) {
     );
 }
 
-
 router.post('/', function (req, res) {
     var destinationEmailAddress = req.body.default_email;
     var mailBody = emailer.generateMailBody(
@@ -220,7 +219,6 @@ router.post('/', function (req, res) {
     );
 });
 
-
 function hasAccessTokenExpired(e) {
     var expired;
     if (!e.innerError) {
@@ -246,7 +244,6 @@ function renderError(res, e) {
     });
 }
 
-
 hbs.registerHelper('checkIsWorkId', function (key, value) {
     // console.log(context);
 
@@ -259,6 +256,59 @@ hbs.registerHelper('checkIsWorkId', function (key, value) {
         return value;
     }
 });
+
+
+hbs.registerHelper('geneSearchItem', function (rowData) {
+    var searchItem = '', Filename = '', LinkingUrl = '', DefaultEncodingURL = '', Description = '';
+    var Author = '', CreatedBy = '', Created = '', ModifiedBy = '', LastModifiedTime = '';
+
+    for (var i in rowData) {
+        if (rowData[i].Key == 'Filename') {
+            Filename = rowData[i].Value;
+        }
+        if (rowData[i].Key == 'LinkingUrl') {
+            LinkingUrl = rowData[i].Value;
+        }
+        if (rowData[i].Key == 'DefaultEncodingURL') {
+            DefaultEncodingURL = rowData[i].Value;
+        }
+        if (rowData[i].Key == 'Description') {
+            if (rowData[i].Value === null || rowData[i].Value == '') {
+                Description = 'Description: No Description';
+            }
+            else {
+                Description = 'Description: ' + rowData[i].Value;
+            }
+        }
+
+        if (rowData[i].Key == 'Author') {
+            Author = rowData[i].Value.split(';')[0];
+        }
+        if (rowData[i].Key == 'CreatedBy') {
+            CreatedBy = rowData[i].Value;
+        }
+        if (rowData[i].Key == 'Created') {
+            Created = moment(rowData[i].Value).format('YYYY-MM-DD HH:mm:ss');
+        }
+        if (rowData[i].Key == 'ModifiedBy') {
+            ModifiedBy = rowData[i].Value;
+        }
+        if (rowData[i].Key == 'LastModifiedTime') {
+            LastModifiedTime = moment(rowData[i].Value).format('YYYY-MM-DD HH:mm:ss');
+        }
+
+        //rowData[i].ValueType
+    }
+
+    searchItem = '<div>' +
+        '<div>' + '<a href="' + LinkingUrl + '" target="_blank">' + Filename + '</a>' + '</div>' +
+        '<div>' + Description + '</div>' +
+        '<div>' + 'Author:' + Author + 'UploadBy:' + CreatedBy + 'UploadDate:' + Created + 'LastModifiedBy' + ModifiedBy + 'LastModifiedTime' + LastModifiedTime + '</div>' +
+        '</div>';
+
+    return new hbs.SafeString(searchItem);
+});
+
 
 //
 // router.get('/disconnect', function (req, res) {
