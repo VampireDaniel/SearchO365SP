@@ -1,0 +1,169 @@
+.hub_header{
+    width: 100%;
+    height:80px;
+    background: #fff;
+    position: fixed;
+    z-index: 1500;
+    left:0;
+    top:0;
+    box-shadow: 0 1px 4px rgba(0,0,0,.2);
+}
+
+.hub_header .nav_left{
+    display: inline-block;
+    position: absolute;
+    z-index:999;
+    top:50%;
+    left: 20px;
+}
+
+.nav_left .icon_menu{
+    position: absolute;
+    top:50%;
+    width:22px;
+    height:2px;
+    background-color:#777;
+}
+
+.nav_left .icon_menu:before,.nav_left .icon_menu:after{
+    content: "";
+    width: 100%;
+    height:100%;
+    position: absolute;
+    background-color: #777;
+    left:0;
+}
+
+.nav_left .icon_menu:before{
+    top: -6px;
+}
+
+.nav_left .icon_menu:after{
+    top:6px;
+}
+
+.hub_header .hub_logo{
+    display: inline-block;
+    position: absolute;
+    z-index: 999;
+    left: 65px;
+    top: 25px;
+}
+
+.hub_logo img{
+    width: 130px;
+}
+
+.hub_header .morphsearch_form{
+    width: 40%;
+    margin:0 auto;
+    padding-top: 15px;
+    position: relative;
+}
+
+.morphsearch_form .input_morphsearch{
+    width:100%;
+    height:30px;
+    padding: 8px 0 8px 22px;
+    background: url("/img/mag.svg") no-repeat;
+    background-size: 18px;
+    background-position: 0 45%;
+    border:0;
+    border-bottom: 1px solid #999;
+    color: #555;
+    overflow: visible;
+}
+
+.morphsearch_form .morphsearch_close{
+    width:16px;
+    height:16px;
+    text-indent: 100%;
+    overflow: hidden;
+    cursor: pointer;
+    pointer-events: none;
+    background:url("/img/icon-close-x.svg") no-repeat center center;
+    background-size: cover;
+    position:absolute;
+    top:30px;
+    right:10px;
+    z-index: 2003;
+}
+
+.main_content .container{
+    width: 75%;
+}
+
+.search_result .nav-tabs{
+    padding:0 50px;
+    border-bottom: solid 2px rgba(211,211,211,.4);
+    margin-top: 10px;
+}
+
+.search_result .nav-tabs li a{
+    padding: 10px 80px 5px;
+    margin-bottom: 0;
+}
+
+.search_result .nav-tabs li:after{
+    border-right:solid 2px rgba(211,211,211,.4);
+    content:"\00a0";
+    position: absolute;
+    right:0;
+    bottom:0;
+    height: 20px;
+}
+
+.search_result .nav-tabs li>a,.search_result .nav-tabs li>a:hover{
+    background: transparent;
+    border:0;
+}
+
+.search_result .nav-tabs .active>a{
+    border-bottom: solid 2px #0654ba;
+    color: #0654ba;
+}
+
+.tab-content .search_tab{
+    width: 60%;
+    margin:60px 0 0 30px;
+    padding-right:30px;
+}
+
+.search_tab .block{
+    margin-bottom: 30px;
+    text-overflow: ellipsis;
+}
+
+.search_item .list_icon{
+    padding-right: 10px;
+}
+
+.search_item .list_title{
+    display: block;
+    line-height: 2.8rem;
+    text-transform: capitalize;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.search_item .list_desc{
+    white-space:normal;
+    text-overflow: ellipsis;
+    max-height: 68px;
+    line-height: 2.2rem;
+    overflow: hidden;
+    margin-left: 30px;
+}
+
+.list_item_line{
+    border-top: 1px solid #eee;
+}
+
+.block .see_more{
+    margin-top: 20px;
+}
+
+.search_item_line{
+    border-top: 1px solid #8c8b8b;
+}

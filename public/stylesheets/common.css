@@ -1,0 +1,111 @@
+@font-face {
+  font-family: "MarketSans-Regular-WebS";
+  src: url("/fonts/WebS/MarketSans-Regular-WebS.eot"); /* IE9*/
+  src: url("/fonts/WebS/MarketSans-Regular-WebS.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+  url("/fonts/WebS/MarketSans-Regular-WebS.woff2") format("woff2"), /* chrome、firefox */
+  url("/fonts/WebS/MarketSans-Regular-WebS.woff") format("woff"), /* chrome、firefox */
+  url("/fonts/WebS/MarketSans-Regular-WebS.ttf") format("truetype"), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  url("/fonts/WebS/MarketSans-Regular-WebS.svg # MarketSans-Regular-WebS") format("svg"); /* iOS 4.1- */
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "MarketSans-SemiBold-WebS";
+  src: url("/fonts/WebS/MarketSans-SemiBold-WebS.eot"); /* IE9*/
+  src: url("/fonts/WebS/MarketSans-SemiBold-WebS.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+  url("/fonts/WebS/MarketSans-SemiBold-WebS.woff2") format("woff2"), /* chrome、firefox */
+  url("/fonts/WebS/MarketSans-SemiBold-WebS.woff") format("woff"), /* chrome、firefox */
+  url("/fonts/WebS/MarketSans-SemiBold-WebS.ttf") format("truetype"), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  url("/fonts/WebS/MarketSans-SemiBold-WebS.svg # MarketSans-Regular-WebS") format("svg"); /* iOS 4.1- */
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Helvetica Neue";
+  src: url("/fonts/helveticaneue/HelveticaNeue.eot"); /* IE9*/
+  src: url("/fonts/helveticaneue/HelveticaNeue.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+  url("/fonts/helveticaneue/HelveticaNeue.woff2") format("woff2"), /* chrome、firefox */
+  url("/fonts/helveticaneue/HelveticaNeue.woff") format("woff"), /* chrome、firefox */
+  url("/fonts/helveticaneue/HelveticaNeue.ttf") format("truetype"), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  url("/fonts/helveticaneue/HelveticaNeue.svg#Helvetica Neue") format("svg"); /* iOS 4.1- */
+  font-weight:normal;
+  font-style:normal;
+}
+
+@font-face {
+  font-family: "HelveticaNeue45Light";
+  src: url("/fonts/helveticaneue/HelveticaNeue45Light.eot"); /* IE9*/
+  src: url("/fonts/helveticaneue/HelveticaNeue45Light.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+  url("/fonts/helveticaneue/HelveticaNeue45Light.woff2") format("woff2"), /* chrome、firefox */
+  url("/fonts/helveticaneue/HelveticaNeue45Light.woff") format("woff"), /* chrome、firefox */
+  url("/fonts/helveticaneue/HelveticaNeue45Light.ttf") format("truetype"), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  url("/fonts/helveticaneue/HelveticaNeue45Light.svg#HelveticaNeue45Light") format("svg"); /* iOS 4.1- */
+}
+
+
+@font-face {
+  font-family: "HelveticaNeueBold";
+  src: url("/fonts/helveticaneue/HelveticaNeueBold.eot"); /* IE9*/
+  src: url("/fonts/helveticaneue/HelveticaNeueBold.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+  url("/fonts/helveticaneue/HelveticaNeueBold.woff2") format("woff2"), /* chrome、firefox */
+  url("/fonts/helveticaneue/HelveticaNeueBold.woff") format("woff"), /* chrome、firefox */
+  url("/fonts/helveticaneue/HelveticaNeueBold.ttf") format("truetype"), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  url("/fonts/helveticaneue/HelveticaNeueBold.svg#HelveticaNeueBold") format("svg"); /* iOS 4.1- */
+}
+
+@font-face {
+  font-family: "HelveticaNeueCondensedBold";
+  src: url("/fonts/helveticaneue/HelveticaNeueCondensedBold.eot"); /* IE9*/
+  src: url("/fonts/helveticaneue/HelveticaNeueCondensedBold.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+  url("/fonts/helveticaneue/HelveticaNeueCondensedBold.woff2") format("woff2"), /* chrome、firefox */
+  url("/fonts/helveticaneue/HelveticaNeueCondensedBold.woff") format("woff"), /* chrome、firefox */
+  url("/fonts/helveticaneue/HelveticaNeueCondensedBold.ttf") format("truetype"), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  url("/fonts/helveticaneue/HelveticaNeueCondensedBold.svg#HelveticaNeueCondensedBold") format("svg"); /* iOS 4.1- */
+}
+
+html{
+  font-size: 62.5%;
+}
+
+body{
+  margin: 0;
+  padding: 0;
+  padding-top: 80px;
+}
+
+*{
+  /*font-family: "Helvetica Neue";*/
+  font-family: "MarketSans-Regular-WebS";
+}
+
+ul,li{
+  list-style-type: none;
+  magin:0;
+  padding: 0;
+}
+
+a,a:hover{
+ text-decoration: none;
+}
+
+p, span,a {
+  word-wrap: break-word;
+}
+
+.h2{
+  font-size: 2.8rem;
+}
+
+.h4{
+  font-size: 1.8rem;
+}
+
+.h5{
+  font-size: 1.6rem;
+}
+
+.blue_txt{
+  color: #0654ba;
+}
