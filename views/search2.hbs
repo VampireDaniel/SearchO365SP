@@ -1,6 +1,6 @@
-<script  language="javascript"  type="text/javascript">
-    function pressEnter(){
-        if(event.keyCode==13){
+<script language="javascript" type="text/javascript">
+    function pressEnter() {
+        if (event.keyCode == 13) {
             $("#btn_search").click();
         }
     }
@@ -9,7 +9,7 @@
         var text = '/search2?querytext=' + $("#ipt_searchtext").val();
         alert(text);
 
-        window.location.href = ''+text+'';
+        window.location.href = '' + text + '';
 
     }
 
@@ -35,7 +35,8 @@
     </div>
     <div id="div_morphsearch" class="morphsearch">
         <div class="morphsearch_form">
-            <input id="ipt_searchtext" class="input_morphsearch h5" type="search" placeholder="O365 API Search" autocomplete="off
+            <input id="ipt_searchtext" class="input_morphsearch h5" type="search" placeholder="O365 API Search"
+                   autocomplete="off
             " onkeydown="pressEnter()">
             <input type="button" id="btn_search" class="" onclick="search();" value="Search" style="display: none">
             <a href="#" class="morphsearch_close"></a>
@@ -45,66 +46,76 @@
 <div class="main_content">
     <div class="container search_result">
         <ul class="nav nav-tabs">
-            <li class="active"><a href="#" class="h4 blue_txt">All (4372)</a></li>
+            <li class="active"><a href="#" class="h4 blue_txt">All( {{result.Rows.length}} )</a></li>
             <li><a href="#" class="h4 blue_txt">People (0)</a></li>
             <li><a href="#" class="h4 blue_txt">Site (0)</a></li>
             <li><a href="#" class="h4 blue_txt">News (0)</a></li>
         </ul>
+        <div>
+            {{#if accessToken}}
+                <div>
+                    accessToken: {{accessToken}}
+                </div>
+            {{/if}}
+        </div>
         <div class="tab-content">
             <div class="tab-pane active">
                 <div class="search_tab">
                     <div class="block">
-                        <p class="h2">HR</p>
+                        <!--<p class="h2">HR</p>-->
                         <ul>
-                            <li>
-                                <div class="search_item">
-                                    <span class="list_icon pull-left">
-                                        <img src="/img/News_paper_lololhaha_okay.png" width="20px" />
-                                    </span>
-                                    <a href="" class="blue_txt h4 list_title">O365 Search Token Test1</a>
-                                    <p class="list_desc h5">O365 API Search Token Test O365 Search Token Test</p>
-                                </div>
-                                <hr class="list_item_line">
-                            </li>
-                            <li>
-                                <div class="search_item">
-                                    <span class="list_icon pull-left">
-                                        <img src="/img/News_paper_lololhaha_okay.png" width="20px" />
-                                    </span>
-                                    <a href="" class="blue_txt h4 list_title">O365 Search Token Test2</a>
-                                    <p class="list_desc h5">O365 API Search Token Test O365 Search Token Test O365 Search Token Test O365 Search Token Test</p>
-                                </div>
-                                <hr class="list_item_line">
-                            </li>
+                            <!--<li>-->
+                                <!--<div class="search_item">-->
+                                    <!--<span class="list_icon pull-left">-->
+                                        <!--<img src="/img/News_paper_lololhaha_okay.png" width="20px"/>-->
+                                    <!--</span>-->
+                                    <!--<a href="" class="blue_txt h4 list_title">O365 Search Token Test1</a>-->
+                                    <!--<p class="list_desc h5">O365 API Search Token Test O365 Search Token Test</p>-->
+                                <!--</div>-->
+                                <!--<hr class="list_item_line">-->
+                            <!--</li>-->
+
+                            {{#if result.Rows}}
+                                {{#each result.Rows}}
+                                    <li>
+                                        <div class="search_item">
+                                            <span class="list_icon pull-left">
+                                                <img src="/img/News_paper_lololhaha_okay.png" width="20px"/>
+                                            </span>
+
+                                            {{geneSearchItem Cells}}
+
+                                            <div style="display: none;">
+                                                <table>
+                                                    {{#each Cells}}
+                                                        <tr>
+                                                            <td>{{Key}}</td>
+                                                            <td>
+                                                                {{Value}}
+                                                            </td>
+                                                        </tr>
+                                                    {{/each}}
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <hr class="list_item_line">
+                                    </li>
+                                {{/each}}
+                            {{/if}}
+
                         </ul>
+
                         <div class="see_more pull-right">
                             <a href="#" class="blue_txt">See more</a>
                         </div>
                         <div class="clearfix"></div>
                         <hr class="search_item_line">
                     </div>
-                    <div>
-                        ElapsedTime: {{elapsedTime}} ms
-                    </div>
-                    <div class="block">
-                        {{#if result.Rows}}
-                            {{#each result.Rows}}
-                                <table border="1" style="border-collapse: collapse;">
-                                    {{#each Cells}}
-                                        <tr>
-                                            <td>{{Key}}</td>
-                                            <td>
-                                                {{Value}}
-                                            </td>
-                                        </tr>
-                                    {{/each}}
-                                </table>
-                                <br/>
-                                <br/>
-                                <br/>
-                            {{/each}}
-                        {{/if}}
-                    </div>
+
+                    <!--<div>-->
+                    <!--ElapsedTime: {{elapsedTime}} ms-->
+                    <!--</div>-->
+
                 </div>
             </div>
             <div class="tab-pane"></div>
