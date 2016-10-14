@@ -8,7 +8,7 @@ var d = new Date();
 var date = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate() + ' ' + d.getHours() + ":" + d.getMinutes();
 
 //config logs
-var logFileName = 'log.log';
+var logFileName = 'log.txt';
 var logFilePath = path.join(__dirname, '../../logs/', logFileName);
 
 // Create a new winston logger instance with two tranports: Console, and File
