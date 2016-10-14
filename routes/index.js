@@ -98,7 +98,8 @@ router.get('/search2', function (req, res) {
                                         //strResult: JSON.stringify(table),
                                         accessToken: accessToken,
                                         result: table,
-                                        elapsedTime: elapsedTime
+                                        totalCount: table.Rows.length
+                                        //elapsedTime: elapsedTime
                                     }
                                 );
                             }
@@ -109,16 +110,20 @@ router.get('/search2', function (req, res) {
                     }
                     else {
                         logger.log('error', err);
+                        renderError(res, err);
                     }
                 });
             }
             else {
                 logger.log('error', err);
+                renderError(res, err);
             }
         });
     }
     else {
-        res.render('search2');
+        res.render('search2', {
+            totalCount: 0
+        });
     }
 });
 
@@ -309,6 +314,13 @@ hbs.registerHelper('geneSearchItem', function (rowData) {
     return new hbs.SafeString(searchItem);
 });
 
+
+hbs.registerHelper('ifeq', function (v1, v2, options) {
+    if (v1 === v2) {
+        return options.fn(this);
+    }
+    return options.inverse(this);
+});
 
 //
 // router.get('/disconnect', function (req, res) {

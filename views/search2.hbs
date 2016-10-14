@@ -23,20 +23,16 @@
 
     function search() {
         var text = '/search2?querytext=' + $("#ipt_searchtext").val();
-        alert(text);
+        //alert(text);
 
-        window.location.href = ''+text+'';
-
+        window.location.href = '' + text + '';
     }
 
-    function getProperties(value) {
-        var href = '/properties?querytext=%27WorkId%3a%22' + value + '%22%27c%27';
-
-        alert(href);
-
-        window.open(href);
-
-    }
+//    function getProperties(value) {
+//        var href = '/properties?querytext=%27WorkId%3a%22' + value + '%22%27c%27';
+//        //alert(href);
+//        window.open(href);
+//    }
 
 </script>
 
@@ -61,81 +57,86 @@
 <div class="main_content">
     <div class="container search_result">
         <ul class="nav nav-tabs">
-            <li class="active"><a href="#" class="h4 blue_txt">All( {{result.Rows.length}} )</a></li>
+            <li class="active"><a href="#" class="h4 blue_txt">All( {{totalCount}} )</a></li>
             <li><a href="#" class="h4 blue_txt">People (0)</a></li>
             <li><a href="#" class="h4 blue_txt">Site (0)</a></li>
             <li><a href="#" class="h4 blue_txt">News (0)</a></li>
         </ul>
-        <div>
-            {{#if accessToken}}
-                <div>
-                    accessToken: {{accessToken}}
-                </div>
-            {{/if}}
-        </div>
-        <div class="tab-content">
-            <div class="tab-pane active">
-                <div class="search_tab">
-                    <div class="block">
-                        <!--<p class="h2">HR</p>-->
-                        <ul>
-                            <!--<li>-->
+
+        {{#ifeq totalCount 0}}
+
+        {{else}}
+            <div>
+                {{#if accessToken}}
+                    <div>
+                        accessToken: {{accessToken}}
+                    </div>
+                {{/if}}
+            </div>
+            <div class="tab-content">
+                <div class="tab-pane active">
+                    <div class="search_tab">
+                        <div class="block">
+                            <!--<p class="h2">HR</p>-->
+                            <ul>
+                                <!--<li>-->
                                 <!--<div class="search_item">-->
-                                    <!--<span class="list_icon pull-left">-->
-                                        <!--<img src="/img/News_paper_lololhaha_okay.png" width="20px"/>-->
-                                    <!--</span>-->
-                                    <!--<a href="" class="blue_txt h4 list_title">O365 Search Token Test1</a>-->
-                                    <!--<p class="list_desc h5">O365 API Search Token Test O365 Search Token Test</p>-->
+                                <!--<span class="list_icon pull-left">-->
+                                <!--<img src="/img/News_paper_lololhaha_okay.png" width="20px"/>-->
+                                <!--</span>-->
+                                <!--<a href="" class="blue_txt h4 list_title">O365 Search Token Test1</a>-->
+                                <!--<p class="list_desc h5">O365 API Search Token Test O365 Search Token Test</p>-->
                                 <!--</div>-->
                                 <!--<hr class="list_item_line">-->
-                            <!--</li>-->
+                                <!--</li>-->
 
-                            {{#if result.Rows}}
-                                {{#each result.Rows}}
-                                    <li>
-                                        <div class="search_item">
+                                {{#if result.Rows}}
+                                    {{#each result.Rows}}
+                                        <li>
+                                            <div class="search_item">
                                             <span class="list_icon pull-left">
                                                 <img src="/img/News_paper_lololhaha_okay.png" width="20px"/>
                                             </span>
 
-                                            {{geneSearchItem Cells}}
+                                                {{geneSearchItem Cells}}
 
-                                            <div style="display: none;">
-                                                <table>
-                                                    {{#each Cells}}
-                                                        <tr>
-                                                            <td>{{Key}}</td>
-                                                            <td>
-                                                                {{Value}}
-                                                            </td>
-                                                        </tr>
-                                                    {{/each}}
-                                                </table>
+                                                <div style="display: none;">
+                                                    <table>
+                                                        {{#each Cells}}
+                                                            <tr>
+                                                                <td>{{Key}}</td>
+                                                                <td>
+                                                                    {{Value}}
+                                                                </td>
+                                                            </tr>
+                                                        {{/each}}
+                                                    </table>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <hr class="list_item_line">
-                                    </li>
-                                {{/each}}
-                            {{/if}}
+                                            <hr class="list_item_line">
+                                        </li>
+                                    {{/each}}
+                                {{/if}}
 
-                        </ul>
+                            </ul>
 
-                        <div class="see_more pull-right">
-                            <a href="#" class="blue_txt">See more</a>
+                            <div class="see_more pull-right">
+                                <a href="#" class="blue_txt">See more</a>
+                            </div>
+                            <div class="clearfix"></div>
+                            <hr class="search_item_line">
                         </div>
-                        <div class="clearfix"></div>
-                        <hr class="search_item_line">
+
+                        <!--<div>-->
+                        <!--ElapsedTime: {{elapsedTime}} ms-->
+                        <!--</div>-->
+
                     </div>
-
-                    <!--<div>-->
-                    <!--ElapsedTime: {{elapsedTime}} ms-->
-                    <!--</div>-->
-
                 </div>
+                <div class="tab-pane"></div>
+                <div class="tab-pane"></div>
+                <div class="tab-pane"></div>
             </div>
-            <div class="tab-pane"></div>
-            <div class="tab-pane"></div>
-            <div class="tab-pane"></div>
-        </div>
+        {{/ifeq}}
     </div>
 </div>
