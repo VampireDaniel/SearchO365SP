@@ -1,5 +1,5 @@
 {
-  "getTokenApiHost": "localhost",
+  "getTokenApiHost": "http://den-rptdv-002.corp.ebay.com/",
   "getTokenApiPort":"3002",
   "getTokenApiPath": "/getTokenApi"
 }
