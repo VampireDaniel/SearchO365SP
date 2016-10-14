@@ -4,12 +4,16 @@
             $("#div_morphsearch").css({"transform":"scale(1.2) translateY(5px)"});
             $(".morphsearch_close").show();
         });
+
+        $(".morphsearch_close").on("mousedown",function(){
+            $("#ipt_searchtext").val("");
+        });
+
         $("#ipt_searchtext").blur(function(){
             $("#div_morphsearch").css({"transform":"scale(1) translateY(0)"});
+            $(".morphsearch_close").hide();
         });
-//        $(".morphsearch_close").click(function(){
-//            $("#ipt_searchtext").val("");
-//        })
+
     })
     function pressEnter(){
         if(event.keyCode==13){
