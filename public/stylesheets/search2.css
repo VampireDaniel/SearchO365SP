@@ -54,6 +54,13 @@
     width: 130px;
 }
 
+.hub_header .morphsearch{
+    transition: all 0.5s;
+    background: #fff;
+    padding-bottom: 15px;
+    transition:all 0.5s;
+}
+
 .hub_header .morphsearch_form{
     width: 40%;
     margin:0 auto;
@@ -74,6 +81,10 @@
     overflow: visible;
 }
 
+.morphsearch_form .input_morphsearch:focus{
+    outline:0;
+}
+
 .morphsearch_form .morphsearch_close{
     width:16px;
     height:16px;
@@ -87,7 +98,10 @@
     top:30px;
     right:10px;
     z-index: 2003;
+    display: none;
 }
+
+
 
 .main_content .container{
     width: 75%;

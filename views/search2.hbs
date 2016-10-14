@@ -1,4 +1,16 @@
 <script  language="javascript"  type="text/javascript">
+    $(function(){
+        $("#ipt_searchtext").focus(function(){
+            $("#div_morphsearch").css({"transform":"scale(1.2) translateY(5px)"});
+            $(".morphsearch_close").show();
+        });
+        $("#ipt_searchtext").blur(function(){
+            $("#div_morphsearch").css({"transform":"scale(1) translateY(0)"});
+        });
+//        $(".morphsearch_close").click(function(){
+//            $("#ipt_searchtext").val("");
+//        })
+    })
     function pressEnter(){
         if(event.keyCode==13){
             $("#btn_search").click();
@@ -19,7 +31,6 @@
         alert(href);
 
         window.open(href);
-
     }
 
 </script>
@@ -35,7 +46,7 @@
     </div>
     <div id="div_morphsearch" class="morphsearch">
         <div class="morphsearch_form">
-            <input id="ipt_searchtext" class="input_morphsearch h5" type="search" placeholder="O365 API Search" autocomplete="off
+            <input id="ipt_searchtext" class="input_morphsearch h5" type="search" placeholder="O365 API Search" value="" autocomplete="off
             " onkeydown="pressEnter()">
             <input type="button" id="btn_search" class="" onclick="search();" value="Search" style="display: none">
             <a href="#" class="morphsearch_close"></a>
