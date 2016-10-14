@@ -76,6 +76,51 @@ router.get('/search', function (req, res) {
     }
 });
 
+router.get('/search2', function (req, res) {
+    if (req.query.querytext !== undefined) {
+        var timeSpan = Date.parse(new Date()).toString();
+
+        cipher.authorize(timeSpan, function (err, cipher) {
+            if (err === null) {
+                requestUtil.getTokenFromApi(timeSpan, cipher, function (err, token) {
+                    if (err === null) {
+                        token =JSON.parse(token.replace(/&quot;/g,'"'));
+                        var accessToken = token.accessToken;
+
+                        var searchText = '\'' + req.query.querytext + '\'';
+                        requestUtil.getSearch(accessToken, searchText, function (err, result) {
+                            if (result !== null) {
+                                var elapsedTime = result.ElapsedTime;
+                                var table = result.PrimaryQueryResult.RelevantResults.Table;
+
+                                res.render(
+                                    'search2',
+                                    {
+                                        strResult: JSON.stringify(table),
+                                        result: table,
+                                        elapsedTime: elapsedTime
+                                    }
+                                );
+                            }
+                            else {
+                                renderError(res, err);
+                            }
+                        });
+                    }
+                    else {
+                        logger.log('error', err);
+                    }
+                });
+            }
+            else {
+                logger.log('error', err);
+            }
+        });
+    }
+    else {
+        res.render('search2');
+    }
+});
 
 function renderSendMail(req, res) {
     requestUtil.getUserData(
