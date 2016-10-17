@@ -94,8 +94,16 @@ p, span,a {
   word-wrap: break-word;
 }
 
+.h1{
+  font-size: 3.2rem;
+}
+
 .h2{
   font-size: 2.8rem;
+}
+
+.h3{
+  font-size: 2.0rem;
 }
 
 .h4{
@@ -108,4 +116,8 @@ p, span,a {
 
 .blue_txt{
   color: #0654ba;
+}
+
+.grey_txt{
+  color: #999;
 }

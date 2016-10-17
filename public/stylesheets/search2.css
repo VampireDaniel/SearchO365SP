@@ -131,9 +131,10 @@
 .search_result .nav-tabs li>a,.search_result .nav-tabs li>a:hover{
     background: transparent;
     border:0;
+    cursor: pointer;
 }
 
-.search_result .nav-tabs .active>a{
+.search_result .nav-tabs .active>a,.search_result .nav-tabs .active>a:hover{
     border-bottom: solid 2px #0654ba;
     color: #0654ba;
 }
