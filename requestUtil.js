@@ -15,7 +15,7 @@ var fs = require('fs');
  */
 
 function getSearch(accessToken, searchText, callback) {
-
+    searchText = '\'' + searchText + '\'';
     var options = {
         host: 'ebayinc.sharepoint.com',
         path: '/_api/search/query?querytext=' + searchText + '&selectproperties=\'Author%2cAuthorOWSUSER%2cContentDatabaseId%2cContentExcludeFromSummaries%2cContentModifiedTime%2cContentSource%2cContentType%2cContentTypeId%2cContents%2cCrawledProperties%2cCreated%2cCreatedBy%2cCreatedById%2cCreatedOWSDATE%2cDefaultEncodingURL%2cDescription%2cDetectedLanguage%2cDiscoveredTime%2cDisplayAuthor%2cDocComments%2cDocSubject%2cDocumentSummary%2cDocumentSummarySize%2cEditorOWSUSER%2cExcludeFromSummary%2cFallbackLanguage%2cFileExtension%2cFileType%2cFilename%2cHostingPartition%2cIndexDocId%2cInternalFileType%2cIsContainer%2cIsDocument%2cIsExternalContent%2cLastModifiedTime%2cLinkingUrl%2cListID%2cListItemID%2cMetadataAuthor%2cModifiedBy%2cModifiedById%2cModifiedOWSDATE%2cOriginalPath%2cParentId%2cParentLink%2cPath%2cPeople%2cPrivacyIndicator%2cReplyCount%2cSPContentType%2cSPSiteURL%2cSPVersion%2cSPWebUrl%2cSecondaryFileExtension%2cSecurityId%2cServerRedirectedEmbedURL%2cServerRedirectedPreviewURL%2cServerRedirectedURL%2cSharedWithDetails%2cSharedWithDetailsOWSMTXT%2cSharedWithUsersOWSUSER%2cSiteID%2cSitePath%2cSiteTemplate%2cSiteTemplateId%2cSiteTitle%2cSize%2cSpellingTerms%2cTitle%2cUIVersionStringOWSTEXT%2cUniqueID%2cUrlDepth%2cUserProfile_GUID%2cViewableByAnonymousUsers%2cViewableByExternalUsers%2cWebApplicationId%2cWebId%2cbody%2ccontentclass%2cdocacl%2cencoding%2clanguage%2clanguages%2cowsPeople%2cowstaxIdSPLocationInfo%2cowstaxIdSPLocationList%2cowstaxIdSPLocationSite\'',

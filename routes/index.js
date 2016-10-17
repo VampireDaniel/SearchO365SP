@@ -40,7 +40,7 @@ router.get('/search', function (req, res) {
                         token = JSON.parse(token.replace(/&quot;/g, '"'));
                         var accessToken = token.accessToken;
 
-                        var searchText = '\'' + req.query.querytext + '\'';
+                        var searchText = req.query.querytext;
                         requestUtil.getSearch(accessToken, searchText, function (err, result) {
                             if (result !== null) {
                                 var elapsedTime = result.ElapsedTime;
@@ -86,7 +86,7 @@ router.get('/search2', function (req, res) {
                         token = JSON.parse(token.replace(/&quot;/g, '"'));
                         var accessToken = token.accessToken;
 
-                        var searchText = '\'' + req.query.querytext + '\'';
+                        var searchText =req.query.querytext;
                         requestUtil.getSearch(accessToken, searchText, function (err, result) {
                             if (result !== null) {
                                 var elapsedTime = result.ElapsedTime;
@@ -279,10 +279,10 @@ hbs.registerHelper('geneSearchItem', function (rowData) {
         }
         if (rowData[i].Key == 'Description') {
             if (rowData[i].Value === null || rowData[i].Value == '') {
-                Description = 'Description: No Description';
+                Description = 'No Description';
             }
             else {
-                Description = 'Description: ' + rowData[i].Value;
+                Description = rowData[i].Value;
             }
         }
 
@@ -306,9 +306,10 @@ hbs.registerHelper('geneSearchItem', function (rowData) {
     }
 
     searchItem = '<div>' +
-        '<div>' + '<a href="' + LinkingUrl + '" target="_blank">' + Filename + '</a>' + '</div>' +
-        '<div>' + Description + '</div>' +
-        '<div>' + 'Author:' + Author + 'UploadBy:' + CreatedBy + 'UploadDate:' + Created + 'LastModifiedBy' + ModifiedBy + 'LastModifiedTime' + LastModifiedTime + '</div>' +
+        ((LinkingUrl === null || LinkingUrl == '') ? '<div>' + '<span class="blue_txt h4 list_title">' + Filename + '</span>' + '</div>' : '<div>' + '<a href="' + LinkingUrl + '" target="_blank" class="blue_txt h4 list_title">' + Filename + '</a>' + '</div>' ) +
+        '<div class="list_desc h5">' + 'Description: ' + Description + '</div>' +
+        '<div class="list_desc">' + 'Author: ' + Author + ' | UploadBy: ' + CreatedBy + ' | UploadDate: ' + Created + '</div>' +
+        '<div class="list_desc">' + 'LastModifiedBy: ' + ModifiedBy + ' | LastModifiedTime: ' + LastModifiedTime + '</div>' +
         '</div>';
 
     return new hbs.SafeString(searchItem);
