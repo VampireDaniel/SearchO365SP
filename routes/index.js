@@ -86,11 +86,12 @@ router.get('/search2', function (req, res) {
                         token = JSON.parse(token.replace(/&quot;/g, '"'));
                         var accessToken = token.accessToken;
 
-                        var searchText =req.query.querytext;
+                        var searchText = req.query.querytext;
                         requestUtil.getSearch(accessToken, searchText, function (err, result) {
                             if (result !== null) {
                                 var elapsedTime = result.ElapsedTime;
-                                var table = result.PrimaryQueryResult.RelevantResults.Table;
+                                var t = result.PrimaryQueryResult.RelevantResults.Table;
+                                var table = sortTable(t);
 
                                 res.render(
                                     'search2',
@@ -126,6 +127,44 @@ router.get('/search2', function (req, res) {
         });
     }
 });
+
+function sortTable(table) {
+    var r1 = [];
+    var r2 = [];
+
+    for (var i in table.Rows) {
+        var t = table.Rows[i];
+
+        for (var i in t.Cells) {
+            if (t.Cells[i].Key == 'Path') {
+                if (t.Cells[i].Value.indexOf('changemanagement') != -1) {
+                    r1.push(t);
+                }
+                else {
+                    r2.push(t);
+                }
+            }
+        }
+    }
+
+    var newTable = {Rows: []};
+    var j = 10;
+
+    for (var i in r1) {
+        if (j > 0) {
+            newTable.Rows.push(r1[i]);
+            j--;
+        }
+    }
+    for (var i in r2) {
+        if (j > 0) {
+            newTable.Rows.push(r2[i]);
+            j--;
+        }
+    }
+    return newTable;
+}
+
 
 function renderSendMail(req, res) {
     requestUtil.getUserData(
@@ -264,12 +303,12 @@ hbs.registerHelper('checkIsWorkId', function (key, value) {
 
 
 hbs.registerHelper('geneSearchItem', function (rowData) {
-    var searchItem = '', Filename = '', LinkingUrl = '', DefaultEncodingURL = '', Description = '';
+    var searchItem = '', Title = '', Filename = '', LinkingUrl = '', DefaultEncodingURL = '', Description = '', SPWebUrl = '', Rank = '';
     var Author = '', CreatedBy = '', Created = '', ModifiedBy = '', LastModifiedTime = '';
 
     for (var i in rowData) {
-        if (rowData[i].Key == 'Filename') {
-            Filename = rowData[i].Value;
+        if (rowData[i].Key == 'Title') {
+            Title = rowData[i].Value;
         }
         if (rowData[i].Key == 'LinkingUrl') {
             LinkingUrl = rowData[i].Value;
@@ -277,6 +316,13 @@ hbs.registerHelper('geneSearchItem', function (rowData) {
         if (rowData[i].Key == 'DefaultEncodingURL') {
             DefaultEncodingURL = rowData[i].Value;
         }
+        if (rowData[i].Key == 'SPWebUrl') {
+            SPWebUrl = rowData[i].Value;
+        }
+        if (rowData[i].Key == 'Rank') {
+            Rank = rowData[i].Value;
+        }
+
         if (rowData[i].Key == 'Description') {
             if (rowData[i].Value === null || rowData[i].Value == '') {
                 Description = 'No Description';
@@ -305,14 +351,38 @@ hbs.registerHelper('geneSearchItem', function (rowData) {
         //rowData[i].ValueType
     }
 
+    if ((LinkingUrl === null || LinkingUrl == '') && (DefaultEncodingURL !== null || DefaultEncodingURL != '')) {
+        LinkingUrl = DefaultEncodingURL;
+    }
+
+    if ((LinkingUrl === null || LinkingUrl == '') && (SPWebUrl !== null || SPWebUrl != '')) {
+        LinkingUrl = SPWebUrl;
+    }
+
     searchItem = '<div>' +
-        ((LinkingUrl === null || LinkingUrl == '') ? '<div>' + '<span class="blue_txt h4 list_title">' + Filename + '</span>' + '</div>' : '<div>' + '<a href="' + LinkingUrl + '" target="_blank" class="blue_txt h4 list_title">' + Filename + '</a>' + '</div>' ) +
+        ((LinkingUrl === null || LinkingUrl == '') ? '<div>' + '<span class="blue_txt h4 list_title">' + Title + '</span>' + '</div>' : '<div>' + '<a href="' + LinkingUrl + '" target="_blank" class="blue_txt h4 list_title">' + Title + '</a>' + '</div>' ) +
         '<div class="list_desc h5">' + 'Description: ' + Description + '</div>' +
+        '<div class="list_desc">' + 'Rank: ' + Rank + '</div>' +
         '<div class="list_desc">' + 'Author: ' + Author + ' | UploadBy: ' + CreatedBy + ' | UploadDate: ' + Created + '</div>' +
         '<div class="list_desc">' + 'LastModifiedBy: ' + ModifiedBy + ' | LastModifiedTime: ' + LastModifiedTime + '</div>' +
         '</div>';
 
     return new hbs.SafeString(searchItem);
+});
+
+
+hbs.registerHelper('getDocId', function (rowData) {
+    var DocId = '';
+
+    for (var i in rowData) {
+        if (rowData[i].Key == 'DocId') {
+            DocId = rowData[i].Value;
+
+            break;
+        }
+    }
+
+    return DocId;
 });
 
 
